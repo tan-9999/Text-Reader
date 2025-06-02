@@ -60,6 +60,7 @@ tts-web-app/
 ├── README.md
 └── requirements.txt       # Python dependencies
 
-🙋‍♂️ Author
+# 🙋‍♂️ Author
+---
 Created by Tanmay Shimpi
 
