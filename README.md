@@ -43,7 +43,7 @@ And open
 http://localhost:5000
 ```
 ---
-##🧪 Technologies Used
+🧪 Technologies Used
 
 ---Flask (Backend)
 
@@ -55,7 +55,7 @@ http://localhost:5000
 
 ---
 
- ##🙋‍♂️ Author
+ 🙋‍♂️ Author
 ---
 Created by Tanmay Shimpi
 
