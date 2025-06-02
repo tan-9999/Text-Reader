@@ -42,7 +42,7 @@ And open
 ```
 http://localhost:5000
 ```
-
+---
 ##🧪 Technologies Used
 
 ---Flask (Backend)
@@ -52,6 +52,8 @@ http://localhost:5000
 ---pyttsx3
 
 ---Neo-Brutalist CSS styling
+
+---
 
  ##🙋‍♂️ Author
 ---
