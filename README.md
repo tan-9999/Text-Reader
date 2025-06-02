@@ -43,7 +43,7 @@ And open
 http://localhost:5000
 ```
 
-🧪 Technologies Used
+##🧪 Technologies Used
 
 ---Flask (Backend)
 
@@ -53,14 +53,7 @@ http://localhost:5000
 
 ---Neo-Brutalist CSS styling
 
-tts-web-app/
-├── templates/
-│   └── index.html         # Main web UI
-├── app.py                 # Flask app
-├── README.md
-└── requirements.txt       # Python dependencies
-
- 🙋‍♂️ Author
+ ##🙋‍♂️ Author
 ---
 Created by Tanmay Shimpi
 
