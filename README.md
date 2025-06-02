@@ -16,7 +16,7 @@ A beautifully styled Text-to-Speech (TTS) web app with a Neo-Brutalist UI built 
 
 ## 📸 Preview
 
-![UI Preview](screenshot.png) <!-- Add screenshot of your app -->
+![UI Preview](TTS_site/screenshot.png) <!-- Add screenshot of your app -->
 
 ---
 
