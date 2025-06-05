@@ -47,18 +47,18 @@
   min-height: 200px;
     }
 .dark #speakBtn {
-    background-color: #facc15; 
+    background-color: #facc15; /* yellow-400 */
     color: black;
-    font-size: 1.125rem;
+    font-size: 1.125rem; /* text-lg */
     font-weight: bold;
-    padding: 0.75rem 1.5rem; 
+    padding: 0.75rem 1.5rem; /* py-3 px-6 */
     border: 5px rgb(95, 95, 95) solid;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     }
 
   .dark #speakBtn:hover {
-    background-color: #eab308; 
+    background-color: #eab308; /* yellow-500 */
     }
 
   .dark #speakBtn:disabled {
@@ -69,14 +69,14 @@
     
 .dark #volume-controls {
     display: flex;
-    gap: 10px; 
+    gap: 10px; /* spacing between buttons */
     align-items: center;
     }
 
 .dark #volume-controls input[type="radio"] {
     width: 20px;
     height: 20px;
-    accent-color: rgb(95, 95, 95); 
+    accent-color: rgb(95, 95, 95); /* makes the dot color black */
     cursor: pointer;
 }
 body {
@@ -155,11 +155,63 @@ h1, h2, h3 {
     accent-color: black;
     cursor: pointer;
     }
-</style>
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border: 2px solid black;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 2px;
+  background-color: black;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #facc15;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+  </style>
 </head>
 
 <body>
   <div class="neo-brutalist-card neo-brutalist bg-white p-6">
+     <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 1.5rem;">
+      <label for="ttsMode" style="font-weight: bold;">Use browser TTS</label>
+      <label class="switch">
+        <input type="checkbox" id="ttsMode" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
     <h1>Text-to-Speech</h1>
 
     <textarea id="text" rows="15" cols="80"
@@ -183,13 +235,26 @@ h1, h2, h3 {
          min="100" max="300" value="200" style="max-width: 120px;">
     </div>
 
+   
     <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
       <button id="speakBtn" class="neo-brutalist" onclick="speakText()">Speak</button>
     </div>     
   </div>
 </body>
+
+
 <script>
   function speakText() {
+    const useServer = document.getElementById("ttsMode").checked;
+    if (useServer) {
+      browserSpeak();
+    } else {
+      serverSpeak();
+    }
+  }
+
+// server side TTS
+  function serverSpeak() {
     const text = document.getElementById("text").value;
     const volume = document.querySelector('input[name="volume"]:checked').value;
     const rate = document.getElementById("rate").value;
@@ -216,5 +281,50 @@ h1, h2, h3 {
       speakBtn.textContent = "Speak";
     });
   }
+// browser side TTS
+  function browserSpeak() {
+    const text = document.getElementById("text").value;
+    const volume = parseFloat(document.querySelector('input[name="volume"]:checked').value);
+    const rate = parseInt(document.getElementById("rate").value);
+    const speakBtn = document.getElementById("speakBtn");
+
+    if (!text.trim()) {
+      alert("Please enter some text.");
+      return;
+    }
+
+    speakBtn.disabled = true;
+    speakBtn.textContent = "Speaking...";
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.volume = volume;
+    utterance.rate = rate / 200;
+
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length) {
+      const preferred = voices.find(v => v.name.includes("Google") || v.lang.includes("en"));
+      if (preferred) utterance.voice = preferred;
+    }
+
+    utterance.onend = () => {
+      speakBtn.disabled = false;
+      speakBtn.textContent = "Speak";
+    };
+
+    utterance.onerror = () => {
+      alert("Failed to speak text.");
+      speakBtn.disabled = false;
+      speakBtn.textContent = "Speak";
+    };
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // preload voices
+  window.speechSynthesis.onvoiceschanged = () => {
+    window.speechSynthesis.getVoices();
+  };
 </script>
+
+
 </html>
