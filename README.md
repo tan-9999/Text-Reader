@@ -4,13 +4,21 @@ A Text-to-Speech Web App
 A beautifully styled Text-to-Speech (TTS) web app with a Neo-Brutalist UI built using **Flask** and **JavaScript**.
 ---
 
-## ⚙️ Features
 
-- 🎤 Convert text into speech
+## 🌐 Live Demo
+
+👉 [Try it out here](https://tanpyproject.pythonanywhere.com/)
+
+## 🔧 Features
+
+- 🗣️ Text-to-Speech using:
+  - ✅ Server-side TTS (`pyttsx3` via Flask)
+  - ✅ Browser-side TTS (Web Speech API)
 - 🔊 Adjustable **volume** via radio buttons
 - 🚀 Adjustable **speech rate**
 - 🖤 Dark Mode support
-- 💬 Modern Neo-Brutalist UI
+- 🔄 Toggle between **Server TTS** and **Browser TTS**
+- 🧠 Smart fallback: browser remembers your preferred TTS mode
 
 ---
 
