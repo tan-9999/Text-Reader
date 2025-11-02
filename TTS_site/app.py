@@ -23,4 +23,5 @@ def speak():
     return jsonify({'status': 'error', 'message': 'No text provided'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
+
