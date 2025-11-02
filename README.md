@@ -7,7 +7,7 @@ A beautifully styled Text-to-Speech (TTS) web app with a Neo-Brutalist UI built 
 
 ## 🌐 Live Demo
 
-👉 [Try it out here](https://tanpyproject.pythonanywhere.com/)
+👉 [Try it out here](https://text-reader.tanmay.fun/)
 
 ---
 
